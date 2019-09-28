@@ -26,8 +26,8 @@ class Pyrosvesti extends Demon {
         });
 
         var fireballVector:FlxVector = new FlxVector();
-        fireballVector.x = Hero.VELOCITY_VECTOR.x - x;
-        fireballVector.y = Hero.VELOCITY_VECTOR.y - y;
+        fireballVector.x = Hero.VELOCITY_VECTOR.x - getMidpoint().x;
+        fireballVector.y = Hero.VELOCITY_VECTOR.y - getMidpoint().y;
         fireballVector.normalize();
         fireballVector.scale(1024);
         
