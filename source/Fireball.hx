@@ -10,7 +10,7 @@ class Fireball extends Entity {
         // setGraphicSize(bulletSize);
         // updateHitbox();
         // updateFramePixels();
-        makeGraphic(64, 64);
+        makeGraphic(16, 16);
     }
 
     override public function update(elapsed:Float):Void {
