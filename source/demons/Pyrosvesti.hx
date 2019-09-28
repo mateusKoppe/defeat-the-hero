@@ -44,20 +44,4 @@ class Pyrosvesti extends Demon {
         fireball.velocity.x = fireballVector.x;
         fireball.velocity.y = fireballVector.y;
     }
-
-    // public function attack() {
-    //     if (_attackTimer.active) return;
-    //     _attackTimer.start(ATTACK_TIME_INTERVAL, function(Timer:FlxTimer) { 
-    //         // setSpritesheetAnim("move"); 
-    //     });
-
-    //     var m:Message = new Message();
-    //     m.from = this;
-    //     m.to = player;
-    //     m.op = Message.OP_DAMAGE;
-    //     m.data = 1;
-    //     PlayState.MAIL.send(m);
-
-    //     // setSpritesheetAnim("attack");
-    // }
 }

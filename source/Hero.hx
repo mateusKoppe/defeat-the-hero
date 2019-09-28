@@ -1,16 +1,15 @@
 package;
 
 import flixel.FlxG;
-import flixel.FlxObject;
 import flixel.util.FlxTimer;
 import flixel.math.FlxVector;
 
 class Hero extends Entity {
     public static var VELOCITY_VECTOR:FlxVector = new FlxVector();
-    private var movementVelocity = 1;
+    private var movementVelocity = 1.5;
     private var fightAgainst:Entity = null;
-    private var attackTimer = new FlxTimer();
-    private var attackInterval = 0.85;
+    var timer:haxe.Timer;
+    var isTimerRunning = false;
     private var damage = 15;
 
     public function new():Void {
@@ -18,15 +17,23 @@ class Hero extends Entity {
         health = 500;
     }
 
-    private function fight():Void {
+    private function attack():Void {
         movementVelocity = 0;
-        if(attackTimer.active) return;
-        attackTimer.start(attackInterval, function(Timer:FlxTimer){});
 
-        FlxG.log.add('Atacando' + damage);
+        if(isTimerRunning) {
+            return;
+        }
+        isTimerRunning = true;
+
+        timer = new haxe.Timer(1000); // 1000ms delay
+        timer.run = function() { 
+            FlxG.log.add('deu dano'); 
+            isTimerRunning = false;
+            timer.stop();
+        }
 
         var m:Message = new Message();
-        m.from = this;
+        m.from = PlayState.HERO;
         m.to = fightAgainst;
         m.data = damage;
         m.op = Message.OP_DAMAGE;
@@ -34,21 +41,21 @@ class Hero extends Entity {
     }
 
     override public function update(elapsed:Float):Void {
-        super.update(elapsed);
-
         // Update vector position
         VELOCITY_VECTOR.x = x;
         VELOCITY_VECTOR.y = y;
 
-        if(fightAgainst != null) fight();
+
+        if(fightAgainst != null) attack();
 
         y -= movementVelocity;
+
+        super.update(elapsed);
     }
 
     override public function onMessage(m:Message):Void {
         if(m.op == Message.OP_DAMAGE){
             hurt(m.data);
-            FlxG.log.add('Vida do heroi -> ' + health);
         } else if (m.op == Message.OP_FIGHT) {
             fightAgainst = m.entities[0];
         }

@@ -20,7 +20,6 @@ class Demon extends Entity {
         if(m.op == Message.OP_DAMAGE){
             FlxG.log.add('Vida do demonio -> ' + health);
             hurt(m.data);
-            FlxG.log.add('Vida do demonio -> ' + health);
         }
     }
 
@@ -32,7 +31,6 @@ class Demon extends Entity {
         m.data = 1;
         m.entities = [this];
         PlayState.MAIL.send(m);
-        kill();
 	}
 
     
