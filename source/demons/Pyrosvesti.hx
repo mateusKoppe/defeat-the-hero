@@ -11,7 +11,7 @@ class Pyrosvesti extends Demon {
 
     public function new():Void {
         super();
-        health = 10;
+        health = 90;
         makeGraphic(64, 64);
     }
 
