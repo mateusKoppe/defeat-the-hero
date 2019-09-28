@@ -12,7 +12,6 @@ class Pyrosvesti extends Demon {
     public function new():Void {
         super();
         health = 90;
-        makeGraphic(64, 64);
     }
 
     override public function update(elapsed:Float):Void {

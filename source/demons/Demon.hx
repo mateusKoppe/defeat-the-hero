@@ -22,8 +22,10 @@ class Demon extends Entity {
     var demonHealthBar:FlxUIBar;
 
     public function new():Void {
-        super(100, 100);
+        super();
         health = 80;
+
+        makeGraphic(60, 60);
 
         demonHealthBar = new FlxUIBar(0, 0, LEFT_TO_RIGHT, 64, 4, this, "health", 0, health, false);
         demonHealthBar.set_style(heroHealthBarStyle);
