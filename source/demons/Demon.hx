@@ -18,8 +18,15 @@ class Demon extends Entity {
 
     override public function onMessage(m:Message):Void {
         if(m.op == Message.OP_DAMAGE){
-            FlxG.log.add('Vida do demonio -> ' + health);
             hurt(m.data);
+            if (health <= 0) {
+                var m:Message = new Message();
+                m.from = this;
+                m.to = PlayState.HERO;
+                m.op = Message.OP_FIGHT;
+                m.data = 0;
+                PlayState.MAIL.send(m);
+            }
         }
     }
 

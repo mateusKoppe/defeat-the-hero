@@ -20,12 +20,6 @@ class Pyrosvesti extends Demon {
         attack();
     }
 
-    override public function onMessage(m:Message):Void {
-        if(m.op == Message.OP_DAMAGE){
-            hurt(m.data);
-        }
-    }
-
     private function attack() {
         if (_attackTimer.active) return;
         _attackTimer.start(ATTACK_TIME_INTERVAL, function(Timer:FlxTimer) { 

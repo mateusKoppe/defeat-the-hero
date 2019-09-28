@@ -6,7 +6,7 @@ import flixel.math.FlxVector;
 
 class Hero extends Entity {
     public static var VELOCITY_VECTOR:FlxVector = new FlxVector();
-    private var movementVelocity = 1.5;
+    private var movementVelocity = 1;
     private var fightAgainst:Entity = null;
     var timer:haxe.Timer;
     var isTimerRunning = false;
@@ -57,7 +57,12 @@ class Hero extends Entity {
         if(m.op == Message.OP_DAMAGE){
             hurt(m.data);
         } else if (m.op == Message.OP_FIGHT) {
-            fightAgainst = m.entities[0];
+            if (m.data == 1) {
+                fightAgainst = m.entities[0];
+            } else {
+                movementVelocity = 1;
+                fightAgainst = null;
+            }
         }
     }
 }
