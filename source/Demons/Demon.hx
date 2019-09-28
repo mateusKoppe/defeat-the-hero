@@ -1,8 +1,10 @@
-package;
+package demons;
 
 class Demon extends Entity {
+
     public function new():Void {
-        super();
+        super(100, 100);
+        health = 80;
     }
 
     override public function update(elapsed:Float):Void {

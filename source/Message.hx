@@ -10,7 +10,5 @@ class Message{
     public var data:Float;
     public var op:Int;
 
-    public function new(){
-
-    }
+    public function new() { }
 }
